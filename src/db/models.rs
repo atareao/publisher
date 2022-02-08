@@ -1,6 +1,7 @@
+use super::schema::{days, lists};
 use serde::{Deserialize, Serialize};
 use diesel::{Queryable, Insertable};
-use crate::schema::*;
+
 
 #[derive(Debug, Serialize, Deserialize, Queryable)]
 pub struct Day{

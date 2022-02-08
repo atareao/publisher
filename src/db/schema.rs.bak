@@ -19,7 +19,7 @@ table! {
         id -> Nullable<Integer>,
         youtube_id -> Text,
         name -> Text,
-        reverse -> Bool,
+        reverse -> Nullable<Integer>,
     }
 }
 
@@ -28,7 +28,7 @@ table! {
         id -> Nullable<Integer>,
         list_id -> Integer,
         youtube_id -> Text,
-        published -> Bool,
+        published -> Nullable<Integer>,
     }
 }
 

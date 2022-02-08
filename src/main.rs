@@ -4,6 +4,7 @@ extern crate diesel;
 extern crate diesel_migrations;
 
 mod db;
+use db::*;
 
 fn main() {
     println!("Hello, world!");

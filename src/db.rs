@@ -1,25 +1,26 @@
 pub mod models;
 pub mod schema;
 
-use diesel::SqliteConnection;
+use diesel::prelude::*;
+use models::*;
+use schema::days;
+use schema::days::dsl::*;
 use dotenv::dotenv;
 use std::env;
 
 embed_migrations!();
 
 pub fn establish_connection() -> SqliteConnection {
-    if cfg!(test) {
-        let conn = SqliteConnection::establish(":memory:")
-          .unwrap_or_else(|_| panic!("Error creating test database"));
+    dotenv().ok();
 
-        let _result = diesel_migrations::run_pending_migrations(&conn);
-        conn
-    } else {
-        dotenv().ok();
+    let database_url = env::var("DATABASE_URL").expect("DATABASE_URL must be set");
 
-        let database_url = env::var("DATABASE_URL").expect("DATABASE_URL must be set");
+    SqliteConnection::establish(&database_url)
+        .expect(&format!("Error connecto to {}", database_url))
+      //.unwrap_or_else(|_| panic!("Error connecting to {}", database_url))
+}
 
-        SqliteConnection::establish(&database_url)
-          .unwrap_or_else(|_| panic!("Error connecting to {}", database_url))
-    }
+pub fn get_days() -> Vec<Day> {
+    let connection = establish_connection();
+    days.load::<Day>(&connection).expect("Error loading days")
 }

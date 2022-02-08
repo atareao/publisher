@@ -7,17 +7,17 @@ CREATE TABLE lists(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     youtube_id TEXT NOT NULL UNIQUE,
     name TEXT NOT NULL UNIQUE,
-    reverse INTEGER DEFAULT 0
+    reverse BOOLEAN NOT NULL DEFAULT 'f'
 );
 CREATE TABLE videos(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     list_id INTEGER NOT NULL,
     youtube_id TEXT NOT NULL UNIQUE,
-    published INTEGER DEFAULT 0
+    published BOOLEAN NOT NULL DEFAULT 'f'
 );
 CREATE TABLE day_list(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     day_id INTEGER NOT NULL,
     list_id INTEGER NOT NULL,
-    norder integer NOT NULL
+    norder INTEGER NOT NULL
 );
