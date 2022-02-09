@@ -1,10 +1,11 @@
-pub mod models;
+pub mod day;
+pub mod model_videos;
+pub mod model_day_list;
+pub mod model_lists;
 pub mod schema;
 
 use diesel::prelude::*;
-use models::*;
-use schema::days;
-use schema::days::dsl::*;
+use day::*;
 use dotenv::dotenv;
 use std::env;
 
@@ -22,5 +23,5 @@ pub fn establish_connection() -> SqliteConnection {
 
 pub fn get_days() -> Vec<Day> {
     let connection = establish_connection();
-    days.load::<Day>(&connection).expect("Error loading days")
+    Day::list(&connection)
 }

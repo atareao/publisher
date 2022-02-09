@@ -26,7 +26,7 @@ async fn main() -> std::io::Result<()>{
             .data(database_pool.clone())
             .route("/", web::get().to(routes::root))
             //.route("/users", web::post().to(routes::create_user))
-            //.route("/getusers", web::get().to(routes::get_users))
+            .route("/get_days", web::get().to(routes::get_days))
     })
     .bind("localhost:8080")
     .unwrap()
