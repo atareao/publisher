@@ -1,7 +1,7 @@
 pub mod day;
-pub mod model_videos;
-pub mod model_day_list;
-pub mod model_lists;
+pub mod video;
+pub mod day_list;
+pub mod list;
 pub mod schema;
 
 use diesel::prelude::*;
