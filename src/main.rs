@@ -1,4 +1,4 @@
-//mod day;
+mod day;
 mod routes;
 
 use sqlx::sqlite::SqlitePool;
