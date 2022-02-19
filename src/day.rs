@@ -1,34 +1,43 @@
 use sqlx::sqlite::SqlitePool;
-use sqlx::{query_as, FromRow, Error};
+use actix_web::web;
+use sqlx::{query, query_as, FromRow, Error};
 use serde::{Serialize, Deserialize};
 
 #[derive(Debug, FromRow, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Day{
-    pub id: i64,
+    pub id: Option<i64>,
     pub name: String,
 }
 
 impl Day{
-    pub async fn get_all(pool: &SqlitePool) -> Result<Vec<Day>, Error>{
+    pub async fn get_all(pool: web::Data<SqlitePool>) -> Result<Vec<Day>, Error>{
         let days = query_as!(Day, r#"SELECT id, name FROM days"#)
-            .fetch_all(pool)
+            .fetch_all(pool.get_ref())
             .await?;
         Ok(days)
     }
 
-    pub async fn get_first(pool: &SqlitePool) -> Result<Day, Error>{
+    pub async fn get_first(pool: web::Data<SqlitePool>) -> Result<Day, Error>{
         let days = query_as!(Day, r#"SELECT id, name FROM days LIMIT 1"#)
-            .fetch_one(pool)
+            .fetch_one(pool.get_ref())
             .await?;
         Ok(days)
     }
 
-    pub async fn new(pool: &SqlitePool, name: &str) -> Result<Day, Error>{
-        let aday = query_as!(Day,
-                           r#"INSERT INTO days (name) VALUES ($1) returning id, name"#, name)
-            .fetch_one(pool)
+    pub async fn get(pool: web::Data<SqlitePool>, id: i64) -> Result<Day, Error>{
+        let day = query_as!(Day, r#"SELECT id, name FROM days WHERE id=$1"#, id)
+            .fetch_one(pool.get_ref())
             .await?;
-        Ok(aday)
+        Ok(day)
+    }
+
+    pub async fn new(pool: web::Data<SqlitePool>, name: &str) -> Result<Day, Error>{
+        let id = query("INSERT INTO days (name) VALUES (?);")
+            .bind(name)
+            .execute(pool.get_ref())
+            .await?
+            .last_insert_rowid();
+        Ok(Self::get(pool, id).await?)
     }
 }
