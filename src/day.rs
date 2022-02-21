@@ -1,4 +1,4 @@
-use sqlx::sqlite::SqlitePool;
+use sqlx::{sqlite::SqlitePool, Executor};
 use actix_web::web;
 use sqlx::{query, query_as, FromRow, Error};
 use serde::{Serialize, Deserialize};
@@ -38,6 +38,26 @@ impl Day{
             .execute(pool.get_ref())
             .await?
             .last_insert_rowid();
+        Ok(Self::get(pool, id).await?)
+    }
+
+    pub async fn delete(pool: web::Data<SqlitePool>, id: i64) -> Result<Day, Error>{
+        let day = query_as!(Day, r#"SELECT id, name FROM days WHERE id=$1"#, id)
+            .fetch_one(pool.get_ref())
+            .await?;
+        query("DELETE FROM days WHERE id = ?")
+            .bind(id)
+            .execute(pool.get_ref())
+            .await?;
+        Ok(day)
+    }
+
+    pub async fn update(pool: web::Data<SqlitePool>, id: i64, name: &str) -> Result<Day, Error>{
+        query("UPDATE days SET name=? WHERE id=?")
+            .bind(name)
+            .bind(id)
+            .execute(pool.get_ref())
+            .await?;
         Ok(Self::get(pool, id).await?)
     }
 }
