@@ -3,11 +3,15 @@ mod routes;
 
 use sqlx::sqlite::SqlitePoolOptions;
 use actix_web::{App, HttpServer};
+use dotenv::dotenv;
+use std::env;
 
 
 #[actix_rt::main]
 async fn main() -> std::io::Result<()>{
-    let db_url = std::env::var("DATABASE_URL").expect("Database not found");
+    dotenv().ok();
+
+    let db_url = env::var("DATABASE_URL").expect("Database not found");
     let pool = SqlitePoolOptions::new()
         .max_connections(5)
         .connect(&db_url)
