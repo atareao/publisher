@@ -21,7 +21,7 @@ pub async fn get_day(pool: web::Data<SqlitePool>, web::Path(day_id): web::Path<i
     Ok(Day::get(pool, day_id)
        .await
        .map(|day| HttpResponse::Ok().json(day))
-       .map_err(|_| HttpResponse::InternalServerError())?)
+       .map_err(|_| HttpResponse::NotFound())?)
 }
 
 #[post("/days")]
