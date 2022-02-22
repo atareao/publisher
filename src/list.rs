@@ -11,6 +11,30 @@ pub struct List{
 }
 
 impl List{
+    pub fn set_name(&mut self, name: &str){
+        self.name = name.to_string();
+    }
+    pub fn set_reverse(&mut self, reverse: bool){
+        self.reverse = reverse;
+    }
+    pub async fn save(&mut self, pool: web::Data<SqlitePool>) -> Result<List, Error>{
+        query("UPDATE lists SET name=?, reverse=? WHERE youtube_id=?")
+            .bind(&self.name)
+            .bind(self.reverse)
+            .bind(&self.youtube_id)
+            .execute(pool.get_ref())
+            .await?;
+        Ok(Self::get(pool, &self.youtube_id).await?)
+    }
+
+    pub async fn delete(&mut self, pool: web::Data<SqlitePool>) -> Result<bool, Error>{
+        query("DELETE FROM lists WHERE youtube_id = ?")
+            .bind(&self.youtube_id)
+            .execute(pool.get_ref())
+            .await?;
+        Ok(true)
+    }
+
     pub async fn get_all(pool: web::Data<SqlitePool>) -> Result<Vec<List>, Error>{
         let lists = query_as!(List, r#"SELECT youtube_id, name, reverse FROM lists"#)
             .fetch_all(pool.get_ref())
@@ -42,7 +66,7 @@ impl List{
         Ok(Self::get(pool, youtube_id).await?)
     }
 
-    pub async fn delete(pool: web::Data<SqlitePool>, youtube_id: &str) -> Result<List, Error>{
+    pub async fn remove(pool: web::Data<SqlitePool>, youtube_id: &str) -> Result<List, Error>{
         let list = query_as!(List, r#"SELECT youtube_id, name, reverse FROM lists WHERE youtube_id=$1"#, youtube_id)
             .fetch_one(pool.get_ref())
             .await?;
@@ -54,7 +78,7 @@ impl List{
     }
 
     pub async fn update(pool: web::Data<SqlitePool>, youtube_id: &str, name: &str, reverse: bool) -> Result<List, Error>{
-        query("UPDATE days SET name=?, reverse=? WHERE youtube_id=?")
+        query("UPDATE lists SET name=?, reverse=? WHERE youtube_id=?")
             .bind(name)
             .bind(reverse)
             .bind(youtube_id)
