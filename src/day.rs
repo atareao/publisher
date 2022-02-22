@@ -1,12 +1,11 @@
-use sqlx::{sqlite::SqlitePool, Executor};
 use actix_web::web;
-use sqlx::{query, query_as, FromRow, Error};
+use sqlx::{sqlite::SqlitePool, query, query_as, FromRow, Error};
 use serde::{Serialize, Deserialize};
 
 #[derive(Debug, FromRow, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Day{
-    pub id: Option<i64>,
+    pub id: i64,
     pub name: String,
 }
 

@@ -2,6 +2,7 @@ use actix_web::{get, post, web, Error, HttpResponse, http::StatusCode};
 use anyhow::Result;
 use sqlx::SqlitePool;
 use crate::day::Day;
+use crate::list::List;
 
 #[get("/")]
 pub async fn root() -> Result<HttpResponse, Error>{
@@ -29,5 +30,13 @@ pub async fn create_day(pool: web::Data<SqlitePool>, data: web::Json<Day>) -> Re
     Ok(Day::new(pool, &data.into_inner().name)
        .await
        .map(|day| HttpResponse::Ok().json(day))
+       .map_err(|_| HttpResponse::InternalServerError())?)
+}
+
+#[get("/lists")]
+pub async fn get_lists(pool: web::Data<SqlitePool>) -> Result<HttpResponse, Error>{
+    Ok(List::get_all(pool)
+       .await
+       .map(|some_lists| HttpResponse::Ok().json(some_lists))
        .map_err(|_| HttpResponse::InternalServerError())?)
 }

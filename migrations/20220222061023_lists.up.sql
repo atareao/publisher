@@ -1,8 +1,7 @@
 -- Add up migration script here
 CREATE TABLE IF NOT EXISTS lists
 (
-    id         INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-    youtube_id TEXT NOT NULL,
+    youtube_id TEXT PRIMARY KEY NOT NULL,
     name       TEXT NOT NULL,
-    reverse    INTEGER NOT NULL DEFAULT 0
+    reverse    BOOLEAN NOT NULL DEFAULT FALSE
 );
