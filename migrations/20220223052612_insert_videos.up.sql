@@ -1,0 +1,41 @@
+-- Add up migration script here
+
+INSERT INTO videos (youtube_id, youtube_list_id, norder, published)
+VALUES
+-- aplicaciones-para-ubuntu
+    ('NkcF6n_7CmI', 'PL3lTiK2rXrUEU2RdRbTGuNr0DLOArfSsE', 1, TRUE),
+    ('OZSBnykLuoI', 'PL3lTiK2rXrUEU2RdRbTGuNr0DLOArfSsE', 2, TRUE),
+    ('kegJbEwLNHg', 'PL3lTiK2rXrUEU2RdRbTGuNr0DLOArfSsE', 3, TRUE),
+    ('RsazE3Gaw3c', 'PL3lTiK2rXrUEU2RdRbTGuNr0DLOArfSsE', 4, TRUE),
+    ('ocd-ksWIDos', 'PL3lTiK2rXrUEU2RdRbTGuNr0DLOArfSsE', 5, TRUE),
+    ('cpqgPwWP0mE', 'PL3lTiK2rXrUEU2RdRbTGuNr0DLOArfSsE', 6, TRUE),
+    ('lMTzjrgZ13M', 'PL3lTiK2rXrUEU2RdRbTGuNr0DLOArfSsE', 7, TRUE),
+    ('jD0oWw1RhAg', 'PL3lTiK2rXrUEU2RdRbTGuNr0DLOArfSsE', 8, TRUE),
+    ('lH6M3At80m8', 'PL3lTiK2rXrUEU2RdRbTGuNr0DLOArfSsE', 9, TRUE),
+    ('wJV1i0MNg5Q', 'PL3lTiK2rXrUEU2RdRbTGuNr0DLOArfSsE', 10, TRUE),
+    ('uWGZ_BIYGJI', 'PL3lTiK2rXrUEU2RdRbTGuNr0DLOArfSsE', 11, TRUE),
+    ('Z_BOqYvH4Jw', 'PL3lTiK2rXrUEU2RdRbTGuNr0DLOArfSsE', 12, TRUE),
+    ('Bxa2aogZ7t0', 'PL3lTiK2rXrUEU2RdRbTGuNr0DLOArfSsE', 13, TRUE),
+    ('TX1Vqn5eAd8', 'PL3lTiK2rXrUEU2RdRbTGuNr0DLOArfSsE', 14, TRUE),
+    ('CoQ7O7gO_sk', 'PL3lTiK2rXrUEU2RdRbTGuNr0DLOArfSsE', 15, TRUE),
+    ('fJxk33xcNWo', 'PL3lTiK2rXrUEU2RdRbTGuNr0DLOArfSsE', 16, TRUE),
+    ('kYsyVOD9sUo', 'PL3lTiK2rXrUEU2RdRbTGuNr0DLOArfSsE', 17, TRUE),
+    ('XT57Th5TxNA', 'PL3lTiK2rXrUEU2RdRbTGuNr0DLOArfSsE', 18, TRUE),
+    ('0jfOPv7BSN8', 'PL3lTiK2rXrUEU2RdRbTGuNr0DLOArfSsE', 19, TRUE),
+    ('ApXJ0E7B4us', 'PL3lTiK2rXrUEU2RdRbTGuNr0DLOArfSsE', 20, TRUE),
+    ('LSdflcz4X2w', 'PL3lTiK2rXrUEU2RdRbTGuNr0DLOArfSsE', 21, TRUE),
+    ('divxMhJtzok', 'PL3lTiK2rXrUEU2RdRbTGuNr0DLOArfSsE', 22, TRUE),
+-- bot-para-telegram
+    ('_o8-gD2P7xA', 'PL3lTiK2rXrUEGdvNBfDup4el6v5lSf5ot', 1, TRUE),
+    ('z_XItEbXuf0', 'PL3lTiK2rXrUEGdvNBfDup4el6v5lSf5ot', 2, TRUE),
+    ('hjHjshC9l0Y', 'PL3lTiK2rXrUEGdvNBfDup4el6v5lSf5ot', 3, TRUE),
+    ('Fw71_U6Bx6c', 'PL3lTiK2rXrUEGdvNBfDup4el6v5lSf5ot', 4, TRUE),
+    ('lFXqoblxM7w', 'PL3lTiK2rXrUEGdvNBfDup4el6v5lSf5ot', 5, TRUE),
+    ('oszhHQ7L0RQ', 'PL3lTiK2rXrUEGdvNBfDup4el6v5lSf5ot', 6, TRUE),
+    ('YHZZc3J4i4E', 'PL3lTiK2rXrUEGdvNBfDup4el6v5lSf5ot', 7, TRUE),
+    ('JIuDYfYY_T8', 'PL3lTiK2rXrUEGdvNBfDup4el6v5lSf5ot', 8, TRUE),
+    ('Of2rN4CuqAA', 'PL3lTiK2rXrUEGdvNBfDup4el6v5lSf5ot', 9, TRUE),
+    ('ILnLzB03Fvc', 'PL3lTiK2rXrUEGdvNBfDup4el6v5lSf5ot', 10, TRUE),
+    ('i4jWYRPY23w', 'PL3lTiK2rXrUEGdvNBfDup4el6v5lSf5ot', 11, TRUE),
+    ('zDngVHTOVDc', 'PL3lTiK2rXrUEGdvNBfDup4el6v5lSf5ot', 12, TRUE),
+    ('78eIqzkNL9I', 'PL3lTiK2rXrUEGdvNBfDup4el6v5lSf5ot', 13, TRUE);
