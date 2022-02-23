@@ -1,0 +1,165 @@
+{
+  "db": "SQLite",
+  "7ff1b527a68f41dc55497a8dc8f6ca49b0b38fadd667c322e9cb392c98d7307e": {
+    "query": "SELECT youtube_id, name, reverse FROM lists",
+    "describe": {
+      "columns": [
+        {
+          "name": "youtube_id",
+          "ordinal": 0,
+          "type_info": "Text"
+        },
+        {
+          "name": "name",
+          "ordinal": 1,
+          "type_info": "Text"
+        },
+        {
+          "name": "reverse",
+          "ordinal": 2,
+          "type_info": "Bool"
+        }
+      ],
+      "parameters": {
+        "Right": 0
+      },
+      "nullable": [
+        false,
+        false,
+        false
+      ]
+    }
+  },
+  "9624dc7534c6eeb63daabf9e6bbec4daf115827fa691650405df5c5c364ab34b": {
+    "query": "SELECT youtube_id, name, reverse FROM lists WHERE youtube_id=$1",
+    "describe": {
+      "columns": [
+        {
+          "name": "youtube_id",
+          "ordinal": 0,
+          "type_info": "Text"
+        },
+        {
+          "name": "name",
+          "ordinal": 1,
+          "type_info": "Text"
+        },
+        {
+          "name": "reverse",
+          "ordinal": 2,
+          "type_info": "Bool"
+        }
+      ],
+      "parameters": {
+        "Right": 1
+      },
+      "nullable": [
+        false,
+        false,
+        false
+      ]
+    }
+  },
+  "aaaaa8ea861e3de45bc17edda017a2f708ae192351d3e6807fa004a4625c430b": {
+    "query": "SELECT youtube_id, name, reverse FROM lists LIMIT 1",
+    "describe": {
+      "columns": [
+        {
+          "name": "youtube_id",
+          "ordinal": 0,
+          "type_info": "Text"
+        },
+        {
+          "name": "name",
+          "ordinal": 1,
+          "type_info": "Text"
+        },
+        {
+          "name": "reverse",
+          "ordinal": 2,
+          "type_info": "Bool"
+        }
+      ],
+      "parameters": {
+        "Right": 0
+      },
+      "nullable": [
+        false,
+        false,
+        false
+      ]
+    }
+  },
+  "b40f9a64488d5b0e47af6089fe0aaff0a729e33b88d258fc604d564e97c8d700": {
+    "query": "SELECT id, name FROM days",
+    "describe": {
+      "columns": [
+        {
+          "name": "id",
+          "ordinal": 0,
+          "type_info": "Int64"
+        },
+        {
+          "name": "name",
+          "ordinal": 1,
+          "type_info": "Text"
+        }
+      ],
+      "parameters": {
+        "Right": 0
+      },
+      "nullable": [
+        false,
+        false
+      ]
+    }
+  },
+  "c75f119d120277f995922cf8d5154cb5853ee60e54166e5628dd2223bd0066f8": {
+    "query": "SELECT id, name FROM days WHERE id=$1",
+    "describe": {
+      "columns": [
+        {
+          "name": "id",
+          "ordinal": 0,
+          "type_info": "Int64"
+        },
+        {
+          "name": "name",
+          "ordinal": 1,
+          "type_info": "Text"
+        }
+      ],
+      "parameters": {
+        "Right": 1
+      },
+      "nullable": [
+        false,
+        false
+      ]
+    }
+  },
+  "e8ff0edd002ae7f736c21d658d7f3d852f4bbd96bacbeb35bdb8645403b11f98": {
+    "query": "SELECT id, name FROM days LIMIT 1",
+    "describe": {
+      "columns": [
+        {
+          "name": "id",
+          "ordinal": 0,
+          "type_info": "Int64"
+        },
+        {
+          "name": "name",
+          "ordinal": 1,
+          "type_info": "Text"
+        }
+      ],
+      "parameters": {
+        "Right": 0
+      },
+      "nullable": [
+        false,
+        false
+      ]
+    }
+  }
+}
