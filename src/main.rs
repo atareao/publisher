@@ -1,5 +1,6 @@
 mod day;
 mod list;
+mod video;
 mod routes;
 
 use sqlx::sqlite::SqlitePoolOptions;
@@ -26,6 +27,7 @@ async fn main() -> std::io::Result<()>{
             .service(routes::root)
             .service(routes::get_day)
             .service(routes::get_lists)
+            .service(routes::get_videos)
     })
     .bind("localhost:8080")
     .unwrap()

@@ -3,6 +3,7 @@ use anyhow::Result;
 use sqlx::SqlitePool;
 use crate::day::Day;
 use crate::list::List;
+use crate::video::Video;
 
 #[get("/")]
 pub async fn root() -> Result<HttpResponse, Error>{
@@ -30,6 +31,14 @@ pub async fn create_day(pool: web::Data<SqlitePool>, data: web::Json<Day>) -> Re
     Ok(Day::new(pool, &data.into_inner().name)
        .await
        .map(|day| HttpResponse::Ok().json(day))
+       .map_err(|_| HttpResponse::InternalServerError())?)
+}
+
+#[get("/videos")]
+pub async fn get_videos(pool: web::Data<SqlitePool>) -> Result<HttpResponse, Error>{
+    Ok(Video::get_all(pool)
+       .await
+       .map(|some_videos| HttpResponse::Ok().json(some_videos))
        .map_err(|_| HttpResponse::InternalServerError())?)
 }
 
