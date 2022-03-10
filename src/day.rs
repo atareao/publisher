@@ -9,6 +9,12 @@ pub struct Day{
     pub name: String,
 }
 
+#[derive(Debug, FromRow, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct NewDay{
+    pub name: String,
+}
+
 impl Day{
     pub async fn get_all(pool: web::Data<SqlitePool>) -> Result<Vec<Day>, Error>{
         let days = query_as!(Day, r#"SELECT id, name FROM days"#)

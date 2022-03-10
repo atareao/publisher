@@ -26,10 +26,11 @@ async fn main() -> std::io::Result<()>{
             .service(routes::get_days)
             .service(routes::root)
             .service(routes::get_day)
+            .service(routes::delete_day)
             .service(routes::get_lists)
             .service(routes::get_videos)
     })
-    .bind("localhost:8080")
+    .bind("localhost:8000")
     .unwrap()
     .run()
     .await
